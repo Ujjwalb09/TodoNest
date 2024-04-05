@@ -4,54 +4,68 @@ import TodoForm from "./components/TodoForm";
 import TodoItem from "./components/TodoItem";
 
 function App() {
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState([]);
 
   const addTodo = (todo) => {
-      setTodos(prevTodos => [{id: Date.now(), ...todo}, ...prevTodos])
-  }
-  const updatedTodo = (id,todo) => {
-      setTodos(prevTodos => prevTodos.map((prevTodo)=>(prevTodo.id === id ? todo : prevTodo)))
-  }
+    setTodos((prevTodos) => [{ id: Date.now(), ...todo }, ...prevTodos]);
+  };
+  const updatedTodo = (id, todo) => {
+    setTodos((prevTodos) =>
+      prevTodos.map((prevTodo) => (prevTodo.id === id ? todo : prevTodo))
+    );
+  };
   const deleteTodo = (id) => {
-      setTodos(prevTodos => prevTodos.filter((todo) => todo.id !== id))
-  }
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  };
   const toggleComplete = (id) => {
-      setTodos((prevTodos) => prevTodos.map((prevTodo) => prevTodo.id === id ? {...prevTodo, completed: !prevTodo.completed} : prevTodo))
-  }
+    setTodos((prevTodos) =>
+      prevTodos.map((prevTodo) =>
+        prevTodo.id === id
+          ? { ...prevTodo, completed: !prevTodo.completed }
+          : prevTodo
+      )
+    );
+  };
 
-  useEffect(()=>{
-    const todos = JSON.parse(localStorage.getItem("todos"))
+  useEffect(() => {
+    const todos = JSON.parse(localStorage.getItem("todos"));
 
-    if(todos && todos.length > 0){
+    if (todos && todos.length > 0) {
       setTodos(todos);
-    } 
-  }, [])
+    }
+  }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos])
-
+  }, [todos]);
 
   return (
-    <TodoProvider value={{todos, addTodo, updatedTodo, deleteTodo, toggleComplete}}>
-    <div className="bg-[#172842] min-h-screen py-8">
-      <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
-        <h1 className="text-2xl font-bold text-center mb-8 mt-2">
-        TodoNest
-        </h1>
-        <div className="mb-4">
-          <TodoForm/>
+    <TodoProvider
+      value={{ todos, addTodo, updatedTodo, deleteTodo, toggleComplete }}
+    >
+      <div className="bg-[#172842] min-h-screen py-8">
+        <div className="w-full max-w-2xl mx-auto shadow-md rounded-lg px-4 py-3 text-white">
+          <h1 className="flex items-center justify-center text-2xl font-bold mb-8 mt-2">
+            TodoNest
+            <img
+              src="/images/checklist.gif"
+              alt="Image"
+              className="ml-2 h-6 w-6 mb-1"
+            />
+          </h1>
+
+          <div className="mb-4">
+            <TodoForm />
           </div>
-        <div className="flex flex-wrap gap-y-3">
-          {todos.map((todo) => (
-            <div key={todo.id}
-            className="w-full">
-              <TodoItem todo={todo}/>
-            </div>
-          ))}
+          <div className="flex flex-wrap gap-y-3">
+            {todos.map((todo) => (
+              <div key={todo.id} className="w-full">
+                <TodoItem todo={todo} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
     </TodoProvider>
   );
 }
