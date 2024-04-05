@@ -1,8 +1,23 @@
-# React + Vite
+# TodoNest
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TodoNest is a simple TODO application built in React JS and styles with Tailwind CSS, it contains the following features:
 
-Currently, two official plugins are available:
+- Users can create a todo.
+- Users can see their existing todos.
+- Users can edit their todos.
+- Users can mark a todo as completed.
+- Users can delete todos.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Tools & Techologies Used
+
+- React: Frontend library for building user interfaces.
+- States and Components: Implemented using React's state management and component-based architecture.
+- Tailwind CSS: Used Tailwind for styling the application.
+
+## Sample
+
+![Alt Text](https://imgur.com/RZsYhcP.jpg)
+
+![Alt Text](https://imgur.com/kZpzIqK.jpg)
+
+![Alt Text](https://imgur.com/E1JGPfU.jpg)
